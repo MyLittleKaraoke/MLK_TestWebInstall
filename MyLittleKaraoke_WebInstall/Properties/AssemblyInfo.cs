@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("My Little Karaoke WebInstall")]
-[assembly: AssemblyDescription("Install My Little Karaoke")]
+[assembly: AssemblyTitle("DEV My Little Karaoke WebInstall")]
+[assembly: AssemblyDescription("DEV Install My Little Karaoke")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Derpy Muffins Factory")]
-[assembly: AssemblyProduct("MLK_WebInst")]
-[assembly: AssemblyCopyright("Copyleft Derpy Muffins Factory - 2017")]
+[assembly: AssemblyCompany("Emily Lovelace")]
+[assembly: AssemblyProduct("MLK_DEVWebInst")]
+[assembly: AssemblyCopyright("Copyleft Emily Lovelace - 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -33,7 +33,7 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2017.8.03.0")]
-[assembly: AssemblyFileVersion("2017.8.03.0")]
+[assembly: AssemblyVersion("2021.12.24.0")]
+[assembly: AssemblyFileVersion("2021.12.24.0")]
 [assembly: NeutralResourcesLanguage("en-US")]
 

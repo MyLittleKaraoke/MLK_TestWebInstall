@@ -52,7 +52,7 @@ namespace MyLittleKaraoke_WebInstall
             // buttonUpdate
             // 
             this.buttonUpdate.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.buttonUpdate.Image = global::MyLittleKaraoke_WebInstall.Properties.Resources.download;
+            this.buttonUpdate.Image = global::DEVMyLittleKaraoke_WebInstall.Properties.Resources.download;
             resources.ApplyResources(this.buttonUpdate, "buttonUpdate");
             this.buttonUpdate.Name = "buttonUpdate";
             this.buttonUpdate.UseVisualStyleBackColor = true;
@@ -60,7 +60,7 @@ namespace MyLittleKaraoke_WebInstall
             // 
             // pictureBoxIcon
             // 
-            this.pictureBoxIcon.Image = global::MyLittleKaraoke_WebInstall.Properties.Resources.update;
+            this.pictureBoxIcon.Image = global::DEVMyLittleKaraoke_WebInstall.Properties.Resources.update;
             resources.ApplyResources(this.pictureBoxIcon, "pictureBoxIcon");
             this.pictureBoxIcon.Name = "pictureBoxIcon";
             this.pictureBoxIcon.TabStop = false;
@@ -68,7 +68,7 @@ namespace MyLittleKaraoke_WebInstall
             // buttonSkip
             // 
             this.buttonSkip.DialogResult = System.Windows.Forms.DialogResult.Abort;
-            this.buttonSkip.Image = global::MyLittleKaraoke_WebInstall.Properties.Resources.hand_point;
+            this.buttonSkip.Image = global::DEVMyLittleKaraoke_WebInstall.Properties.Resources.hand_point;
             resources.ApplyResources(this.buttonSkip, "buttonSkip");
             this.buttonSkip.Name = "buttonSkip";
             this.buttonSkip.UseVisualStyleBackColor = true;

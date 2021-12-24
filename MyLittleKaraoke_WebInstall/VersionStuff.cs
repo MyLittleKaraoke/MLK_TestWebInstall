@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace MyLittleKaraoke_WebInstall
 {
-    class VersionStuff
+    public class VersionStuff
     {
         HelperClass cHelper = new HelperClass();
 

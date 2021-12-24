@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLittleKaraoke_WebInstall", "MyLittleKaraoke_WebInstall\MyLittleKaraoke_WebInstall.csproj", "{92A1E882-1426-41B8-AEF1-78FC1A13F291}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLittleKaraoke_WebInstallDev", "MyLittleKaraoke_WebInstall\MyLittleKaraoke_WebInstallDev.csproj", "{92A1E882-1426-41B8-AEF1-78FC1A13F291}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +18,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C3015E2C-FB3E-4CFE-AFE8-427B69438130}
 	EndGlobalSection
 EndGlobal

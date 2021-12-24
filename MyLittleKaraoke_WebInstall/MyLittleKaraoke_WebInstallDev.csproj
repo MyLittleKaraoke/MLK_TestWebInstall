@@ -7,8 +7,8 @@
     <ProjectGuid>{92A1E882-1426-41B8-AEF1-78FC1A13F291}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MyLittleKaraoke_WebInstall</RootNamespace>
-    <AssemblyName>MyLittleKaraoke_WebInstall</AssemblyName>
+    <RootNamespace>DEVMyLittleKaraoke_WebInstall</RootNamespace>
+    <AssemblyName>DEVMyLittleKaraoke_WebInstall</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -57,10 +57,10 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>FC8AFD89AB3EC04C42B3DA437C7C44ED08847787</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>F376EE2A321A625C0994D2B1CCEE98DF0233D965</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>MyLittleKaraoke_WebInstall_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>MyLittleKaraoke_WebInstallDev_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

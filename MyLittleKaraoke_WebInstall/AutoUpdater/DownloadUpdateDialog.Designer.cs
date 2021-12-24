@@ -37,7 +37,7 @@
             // 
             // pictureBoxIcon
             // 
-            this.pictureBoxIcon.Image = global::MyLittleKaraoke_WebInstall.Properties.Resources.download_32;
+            this.pictureBoxIcon.Image = global::DEVMyLittleKaraoke_WebInstall.Properties.Resources.download_32;
             resources.ApplyResources(this.pictureBoxIcon, "pictureBoxIcon");
             this.pictureBoxIcon.Name = "pictureBoxIcon";
             this.pictureBoxIcon.TabStop = false;

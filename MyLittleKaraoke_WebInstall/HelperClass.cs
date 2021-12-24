@@ -12,7 +12,7 @@ using System.Diagnostics;
 
 namespace MyLittleKaraoke_WebInstall
 {
-    class HelperClass
+    public class HelperClass
     {
         private string SelfPath = System.Reflection.Assembly.GetEntryAssembly().Location;
 
@@ -32,9 +32,9 @@ namespace MyLittleKaraoke_WebInstall
             };
         }
 
-        public string[,] GetFileAddressesListFromWeb(Uri UpdaterFileAddressUrl)
+        public string[,] GetFileAddressesListFromWeb(string UpdaterFileAddressUrl)
         {
-            string[] WebPageContentLines = GetWebPageContent(UpdaterFileAddressUrl.OriginalString).Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
+            string[] WebPageContentLines = GetWebPageContent(UpdaterFileAddressUrl).Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
             string[,] FileTableNx2 = new string[WebPageContentLines.Length / 2, 2];
             for (int i = 0; i < WebPageContentLines.Length -1; i++) //-1 because of the linux-typical line-break at file-end
             {

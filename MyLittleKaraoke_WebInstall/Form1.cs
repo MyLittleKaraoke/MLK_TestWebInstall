@@ -15,16 +15,19 @@ namespace MyLittleKaraoke_WebInstall
 {
     public partial class Form1 : Form
     {
-        private Uri WebFileList = new Uri("https://www.mylittlekaraoke.com/store/webinst/windows.webinst");
+        public string WebServerURL = "boop";
+        public string webinstName = "windows.webinst";
+        private string webverName = "versionlist";
+        public string WebFileList = "nope";
         private string LocalFilenameWeblist = "windows.dvdinst";
         private string[,] FileAddressList;
         private string InstallFolderPath = "";
-        private string InstalledVersion = "none";
-        private string InstalledPackage = "none";
+        public string InstalledVersion = "none";
+        public string InstalledPackage = "none";
         private int sucessfullyDownloadedCount = 0;
         public string legacy;
-        private HelperClass cHelper = new HelperClass();
-        private VersionStuff cVersion = new VersionStuff();
+        public HelperClass cHelper = new HelperClass();
+        public VersionStuff cVersion = new VersionStuff();
         private string Downloaded;
         private string Downloaded2;
         private string status;
@@ -113,6 +116,8 @@ namespace MyLittleKaraoke_WebInstall
 
         private void DownloadAndInstallButton_Click(object sender, EventArgs e)
         {
+            WebServerURL = ServerBox.Text;
+            WebFileList = ServerBox.Text + "/" + webinstName;
             try
             {
                 //check if user wants to install to folder which contains the installer already
@@ -308,7 +313,16 @@ namespace MyLittleKaraoke_WebInstall
                 {
                     //all files are now successfully downloaded.
                     progressBar2.Value = 100;
-                    InstallationFunctionThread();
+                    if (DisableInstall.Checked == false)
+                    { InstallationFunctionThread(); }
+                    else if (DisableInstall.Checked == true)
+                    {
+                        progressBar3.Value = 100;
+                        status = "Installation is skipped!";
+                        MessageBox.Show("Installation of MyLittleKaraoke was skipped!");
+                        RefreshInitialization();
+                    }
+
                 }
                 //We start the stopwatch to calculate progress.
             }
@@ -345,6 +359,31 @@ namespace MyLittleKaraoke_WebInstall
                         catch (Exception) { ;}
                         continue;
                     }
+
+                    Boolean domanually = false;
+                    if (CurrentFileDLName.Contains("clean_usdx"))
+                    {
+                        string FolderPath = TextBoxInstallPath.Text;
+                        try
+                        {
+                            Directory.Move(Path.Combine(FolderPath, "songs"), Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MLKSongsTempFolder"));
+                        }
+                        catch (Exception ex)
+                        {
+                            domanually = true;
+                            MessageBox.Show("Was not able to automatically correctly backup songs folder or uninstall MLK SIM4. Please backup the songs folder manually to a different folder now and then click OK." + Environment.NewLine + "Error Message: " + ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace);
+                        }
+                        try { Directory.Delete(InstallFolderPath, true); Directory.CreateDirectory(InstallFolderPath); }
+                        catch (Exception) {; }
+
+
+                        if (domanually == false)
+                        { Directory.Move(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "MLKSongsTempFolder"), Path.Combine(FolderPath, "songs")); }
+                        else
+                        { MessageBox.Show("Please now restore the songs folder of the game to the correct path (-> in the MyLittleKaraoke folder) and then press OK to continue the installation."); }
+                        continue;
+                    }
+
                     Stream inStream21;
                     if (cHelper.IsDVDInstallation())
                     {
@@ -460,11 +499,26 @@ namespace MyLittleKaraoke_WebInstall
             }
         }
 
-        private void RefreshInitialization()
+        public void RefreshInitialization()
         {
-            //Get installed Version
-            InstalledVersion = cVersion.GetSongVersion(InstallFolderPath);
-            InstalledPackage = cVersion.GetPackageVersion(InstallFolderPath);
+            if (ForceReinstall.Checked == true)
+            {
+                InstalledVersion = "none";
+                InstalledPackage = "none";
+            }
+
+            else if (ForceUpd.Checked == true)
+            {
+                InstalledVersion = "Forcing Upgrade";
+                InstalledPackage = forceupgradetext.Text;
+            }
+            else
+            {
+                //Get installed Version
+                InstalledVersion = cVersion.GetSongVersion(InstallFolderPath);
+                InstalledPackage = cVersion.GetPackageVersion(InstallFolderPath);
+            }    
+
             DownloadAndInstallButton.Text = "Install the Game!";
             if (InstalledVersion.Equals("none") == true)
                 ActionNextLabel.Text = "Action: new installation";
@@ -496,6 +550,81 @@ namespace MyLittleKaraoke_WebInstall
             {
                 cHelper.ShowErrorMessageDialog(ex.Message, ex.StackTrace, "BrowseInstallerLocationButton_Click");
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+            WebServerURL = ServerBox.Text + "/" + webverName;
+            WebRequest Request = WebRequest.Create(WebServerURL);
+            WebResponse Response = Request.GetResponse();
+            StreamReader Reader = new StreamReader(Response.GetResponseStream());
+            string line = string.Empty;
+            line = Reader.ReadLine();
+            //Continue to read until you reach end of file
+            while (line != null)
+            {
+                this.listBox1.Items.Add(line);
+                //Read the next line
+                line = Reader.ReadLine();
+            }
+
+            //close the file
+            Reader.Close();
+
+
+
+        }
+
+        private void ForceReinstall_CheckedChanged(object sender, EventArgs e)
+        {
+            RefreshInitialization();
+            if (ForceReinstall.Checked == true)
+            {
+                ForceUpd.Checked = false;
+                ForceUpd.Enabled = false;
+                forceupgradetext.Enabled = false;
+            }
+
+            else if (ForceReinstall.Checked == false)
+            {
+                ForceUpd.Enabled = true;
+                forceupgradetext.Enabled = true;
+            }
+        }
+
+        private void ForceUpd_CheckedChanged(object sender, EventArgs e)
+        {
+            RefreshInitialization();
+
+            if (ForceUpd.Checked == true)
+            { 
+                ForceReinstall.Checked = false;
+                ForceReinstall.Enabled = false;
+            }
+
+            else if (ForceUpd.Checked == false)
+            {
+                ForceReinstall.Enabled= true;
+            }    
+        }
+
+        private void forceupgradetext_TextChanged(object sender, EventArgs e)
+        {
+            RefreshInitialization();
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            webinstName = "wintest" + listBox1.SelectedIndex.ToString() + ".webinst";
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked == true)
+            { listBox1.Enabled = true; }
+            else if (checkBox2.Checked == false)
+            { listBox1.Enabled = false; }
         }
     }
 }
